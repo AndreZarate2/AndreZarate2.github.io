@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="description" content="Campaña Universitaria para transformar nuestra universidad con educación de calidad, transparencia y participación estudiantil.">
+    <title>Campaña Universitaria - Transformemos Juntos</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1e3c72;
+            --color-secondary: #2a5298;
+            --color-accent: #ff6b6b;
+            --color-light: #f5f6fa;
+            --color-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--color-light);
+            color: var(--color-dark);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Header hero para el encabezado */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('Fotos/Logo.jpg') no-repeat center/cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 90%;
+            width: 800px;
+            padding: 0 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slogan {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Botones principales */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            touch-action: manipulation;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 25%, rgba(255, 255, 255, 0.1) 50%, transparent 75%);
+            background-size: 400% 400%;
+            z-index: -1;
+            transition: background-position 0.5s;
+        }
+
+        .btn:hover::before,
+        .btn:focus::before {
+            background-position: 100% 100%;
+        }
+
+        .btn-facultad {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-asamblea {
+            background: #48dbfb;
+            color: white;
+        }
+
+        .btn-universitario {
+            background: #1dd1a1;
+            color: white;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Secciones de candidaturas */
+        .section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            min-height: 100vh;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Candidatos */
+        .candidates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            justify-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .candidate {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .candidate:hover,
+        .candidate:focus-within {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .candidate-img-container {
+            height: px; /*las fotos deben tener un mismo tamaño de pixeles para la web */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .candidate-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center; /* Imagen centrada */
+            transition: transform 0.4s ease;
+        }
+
+        .candidate:hover .candidate-img,
+        .candidate:focus-within .candidate-img {
+            transform: scale(1.05);
+        }
+
+        .candidate-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .candidate-name {
+            font-size: clamp(1.2rem, 3vw, 1.3rem);
+            margin-bottom: 0.3rem;
+            color: var(--color-primary);
+        }
+
+        .candidate-role {
+            color: #666;
+            margin-bottom: 0.8rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .candidate-bio {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Propuestas */
+        .proposals {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .proposals h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.4rem, 3vw, 1.6rem);
+            color: var(--color-primary);
+        }
+
+        .proposals ol {
+            padding-left: 1.2rem;
+        }
+
+        .proposals li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--color-accent);
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .proposals strong {
+            color: var(--color-primary);
+        }
+
+        /* Botón de volver */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-primary);
+        }
+
+        .back-btn:hover,
+        .back-btn:focus {
+            background: transparent;
+            color: var(--color-primary);
+        }
+
+        /* Feedback section */
+        .feedback-section {
+            margin-top: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .feedback-text {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .feedback-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover,
+        .feedback-btn:focus {
+            background: white;
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .social-icons {
+            margin: 1rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            margin: 0 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover,
+        .social-icons a:focus {
+            color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        /* Animaciones */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.2rem);
+            }
+
+            .slogan {
+                font-size: clamp(0.9rem, 3.5vw, 1rem);
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 80%;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .candidates {
+                grid-template-columns: 1fr;
+            }
+
+            .candidate {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 2rem 0.5rem;
+            }
+
+            .section-header h2 {
+                font-size: clamp(1.5rem, 4vw, 1.8rem);
+            }
+
+            .proposals {
+                padding: 1.5rem;
+            }
+
+            .proposals li {
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Página Principal -->
+    <div id="home" class="hero animate__animated animate__fadeIn">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">¡Transformemos Nuestra Facultad con Talento y Experiencia!</h1>
+            <p class="slogan animate__animated animate__fadeIn animate__delay-1s">Unidos por una educación de calidad, transparente y participativa</p>
+            
+            <div class="btn-container">
+                <a href="#facultad" class="btn btn-facultad animate__animated animate__fadeInLeft animate__delay-1s" role="button" aria-label="Consejo de Facultad">
+                    <i class="fas fa-users"></i> Consejo de Facultad
+                </a>
+                <a href="#asamblea" class="btn btn-asamblea animate__animated animate__fadeInUp animate__delay-1s" role="button" aria-label="Asamblea Universitaria">
+                    <i class="fas fa-university"></i> Asamblea Universitaria
+                </a>
+                <a href="#universitario" class="btn btn-universitario animate__animated animate__fadeInRight animate__delay-1s" role="button" aria-label="Consejo Universitario">
+                    <i class="fas fa-graduation-cap"></i> Consejo Universitario
+                </a>
+            </div>
+            
+            <div class="feedback-section animate__animated animate__fadeIn animate__delay-2s">
+                <p class="feedback-text">Ayúdanos a mejorar nuestra facultad, cualquier comentario o crítica es constructiva.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSebnM7II7g-LkRpKy38PZdp3BbvQKA3LYfZP5-leg7dZhF3Iw/viewform?usp=header" target="_blank" class="feedback-btn" role="button" aria-label="Enviar comentarios">
+                    Si tienes algo que aportar haz clic aquí <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Consejo de Facultad -->
+    <div id="facultad" class="section">
+        <div class="section-header animate-on-scroll">
+            <h2>Consejo de Facultad</h2>
+            <p>Conoce a nuestros candidatos y sus propuestas para mejorar nuestra facultad</p>
+        </div>
+        
+        <div class="candidates">
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="Fotos/Logo.jpg" alt="Tu Nombre, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Tu Nombre</h3>
+                    <p class="candidate-role">Candidato a Consejo de Facultad</p>
+                    <p class="candidate-bio">Estudiante de [Tu Carrera] con experiencia en [tus habilidades]. Comprometido con mejorar [aspectos específicos de tu facultad].</p>
+                </div>
+            </div>
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="foto2.jpg" alt="Compañero 1, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Compañero 1</h3>
+                    <p class="candidate-role">Candidato a Consejo de Facultad</p>
+                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                </div>
+            </div>
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="foto3.jpg" alt="Compañero 2, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Compañero 2</h3>
+                    <p class="candidate-role">Candidato a Consejo de Facultad</p>
+                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                </div>
+            </div>
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="foto4.jpg" alt="Compañero 3, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Compañero 3</h3>
+                    <p class="candidate-role">Candidato a Consejo de Facultad</p>
+                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="proposals animate-on-scroll">
+            <h3>Nuestras Propuestas</h3>
+            <ol>
+                <li><strong>Transparencia en la gestión:</strong> Implementaremos informes mensuales accesibles a todos los estudiantes.</li>
+                <li><strong>Mejora de infraestructura:</strong> Gestionaremos la renovación de laboratorios y aulas de estudio.</li>
+                <li><strong>Programas de tutorías:</strong> Crearemos un sistema de acompañamiento para estudiantes de primeros ciclos.</li>
+                <li><strong>Vinculación con empleadores:</strong> Fortaleceremos convenios para prácticas preprofesionales.</li>
+                <li><strong>Participación estudiantil:</strong> Promoveremos consultas frecuentes para decisiones importantes.</li>
+                <li><strong>Becas y financiamiento:</strong> Gestionaremos más oportunidades de apoyo económico.</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="#home" class="back-btn animate-on-scroll" role="button" aria-label="Volver al inicio">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección Asamblea Universitaria -->
+    <div id="asamblea" class="section">
+        <div class="section-header animate-on-scroll">
+            <h2>Asamblea Universitaria</h2>
+            <p>Nuestros 15 representantes para la Asamblea Universitaria y sus compromisos</p>
+        </div>
+        
+        <div class="candidates">
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="Fotos/foto-asamblea1.jpg" alt="Candidato 1, Asamblea Universitaria" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Candidato 1</h3>
+                    <p class="candidate-role">Asamblea Universitaria</p>
+                    <p class="candidate-bio">[Descripción del candidato, su formación y objetivos].</p>
+                </div>
+            </div>
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="foto-asamblea2.jpg" alt="Candidato 2, Asamblea Universitaria" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Candidato 2</h3>
+                    <p class="candidate-role">Asamblea Universitaria</p>
+                    <p class="candidate-bio">[Descripción del candidato, su formación y objetivos].</p>
+                </div>
+            </div>
+        </div>    
+        
+        <div class="proposals animate-on-scroll">
+            <h3>Propuestas para la Asamblea</h3>
+            <ol>
+                <li><strong>Reforma académica:</strong> Actualización de planes de estudio según necesidades del mercado laboral.</li>
+                <li><strong>Presupuesto participativo:</strong> Que los estudiantes decidan parte del uso de los recursos.</li>
+                <li><strong>Igualdad de oportunidades:</strong> Políticas contra la discriminación y por la inclusión.</li>
+                <li><strong>Investigación estudiantil:</strong> Más fondos para proyectos de investigación de alumnos.</li>
+                <li><strong>Transporte universitario:</strong> Mejoras en rutas y horarios para estudiantes.</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="#home" class="back-btn animate-on-scroll" role="button" aria-label="Volver al inicio">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección Consejo Universitario -->
+    <div id="universitario" class="section">
+        <div class="section-header animate-on-scroll">
+            <h2>Consejo Universitario</h2>
+            <p>Nuestros 2 representantes para el máximo órgano de gobierno universitario</p>
+        </div>
+        
+        <div class="candidates">
+            <div class="candidate animate-on-scroll">
+                <div class="candidate-img-container">
+                    <img src="Fotos/7.png" alt="Candidato 1, Consejo Universitario" class="candidate-img" loading="lazy">
+                </div>
+                <div class="candidate-info">
+                    <h3 class="candidate-name">Candidato 1</h3>
+                    <p class="candidate-role">Consejo Universitario</p>
+                    <p class="candidate-bio">[Descripción del candidato, su experiencia y visión para la universidad].</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="proposals animate-on-scroll">
+            <h3>Propuestas para el Consejo</h3>
+            <ol>
+                <li><strong>Gobierno democrático:</strong> Mayor participación estudiantil en decisiones clave.</li>
+                <li><strong>Internacionalización:</strong> Más convenios con universidades extranjeras.</li>
+                <li><strong>Transparencia:</strong> Rendición de cuentas pública de todas las gestiones.</li>
+                <li><strong>Bienestar estudiantil:</strong> Mejora de servicios de salud, deporte y cultura.</li>
+                <li><strong>Innovación tecnológica:</strong> Modernización de plataformas y herramientas digitales.</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="#home" class="back-btn animate-on-scroll" role="button" aria-label="Volver al inicio">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="animate-on-scroll">
+        <h3>¡Únete al Cambio!</h3>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>Contacto: <a href="mailto:contacto@campaniauniversitaria.edu">contacto@campaniauniversitaria.edu</a> | Teléfono: +51 123 456 789</p>
+        <p>© 2025 Campaña Universitaria - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Mostrar sección según hash
+        function showSection() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const hash = window.location.hash;
+            if (hash && document.querySelector(hash)) {
+                document.querySelector(hash).classList.add('active');
+                setTimeout(() => {
+                    document.querySelector(hash).scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Animación al hacer scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const screenPosition = window.innerHeight * 0.8;
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // Smooth scroll y manejo de secciones
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#home') {
+                        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        history.pushState(null, null, ' ');
+                        e.preventDefault();
+                        return;
+                    }
+
+                    if (targetId === '#') {
+                        e.preventDefault();
+                        return;
+                    }
+
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                        target.classList.add('active');
+                        history.pushState(null, null, targetId);
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+
+                // Soporte para touch en dispositivos móviles
+                anchor.addEventListener('touchstart', function() {
+                    this.classList.add('active-touch');
+                });
+                anchor.addEventListener('touchend', function() {
+                    this.classList.remove('active-touch');
+                });
+            });
+        }
+
+        // Inicialización
+        window.addEventListener('load', () => {
+            showSection();
+            animateOnScroll();
+            setupSmoothScroll();
+        });
+
+        window.addEventListener('hashchange', showSection);
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Optimización para móviles: reducir animaciones en dispositivos de baja potencia
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.animate__animated, .animate-on-scroll').forEach(el => {
+                el.classList.remove('animate__animated', 'animate-on-scroll');
+                el.style.opacity = 1;
+                el.style.transform = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
