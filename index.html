@@ -60,6 +60,12 @@
             background: url('Fotos/Logo.jpg') no-repeat center/cover;
             opacity: 0.3;
             z-index: 0;
+            animation: logoFade 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFade {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         .hero-content {
@@ -89,6 +95,7 @@
             gap: 1rem;
             flex-wrap: wrap;
             margin-top: 2rem;
+            position: relative;
         }
 
         .btn {
@@ -106,6 +113,7 @@
             position: relative;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             touch-action: manipulation;
+            z-index: 2;
         }
 
         .btn::before {
@@ -141,10 +149,57 @@
             color: white;
         }
 
+        .btn-transparencia {
+            background: #9b59b6;
+            color: white;
+        }
+
         .btn:hover,
         .btn:focus {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Dropdown para Transparencia y Estatutos */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            z-index: 3;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: var(--color-dark);
+            text-decoration: none;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .dropdown-content a:hover,
+        .dropdown-content a:focus {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content {
+            display: block;
         }
 
         /* Secciones de candidaturas */
@@ -224,7 +279,7 @@
         }
         
         .candidate-img-container {
-            height: px; /*las fotos deben tener un mismo tamaño de pixeles para la web */
+            height: px;
             overflow: hidden;
             position: relative;
         }
@@ -233,7 +288,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center; /* Imagen centrada */
+            object-position: center;
             transition: transform 0.4s ease;
         }
 
@@ -414,6 +469,12 @@
                 justify-content: center;
             }
 
+            .dropdown-content {
+                left: 0;
+                transform: none;
+                width: 100%;
+            }
+
             .candidates {
                 grid-template-columns: 1fr;
             }
@@ -463,6 +524,15 @@
                 <a href="#universitario" class="btn btn-universitario animate__animated animate__fadeInRight animate__delay-1s" role="button" aria-label="Consejo Universitario">
                     <i class="fas fa-graduation-cap"></i> Consejo Universitario
                 </a>
+                <div class="dropdown">
+                    <button class="btn btn-transparencia animate__animated animate__fadeInRight animate__delay-1s" role="button" aria-label="Transparencia y Estatutos">
+                        <i class="fas fa-file-alt"></i> Transparencia y Estatutos
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="https://unac.edu.pe/transparencia/transparencia-fime/" target="_blank">Transparencia FIME</a>
+                        <a href="https://unac.edu.pe/transparencia/estatuto-de-la-unac/" target="_blank">Estatutos UNAC</a>
+                    </div>
+                </div>
             </div>
             
             <div class="feedback-section animate__animated animate__fadeIn animate__delay-2s">
@@ -484,42 +554,42 @@
         <div class="candidates">
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="Fotos/Logo.jpg" alt="Tu Nombre, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                    <img src="Fotos/1.png" alt="Tu Nombre, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Tu Nombre</h3>
+                    <h3 class="candidate-name">André Zarate</h3>
                     <p class="candidate-role">Candidato a Consejo de Facultad</p>
-                    <p class="candidate-bio">Estudiante de [Tu Carrera] con experiencia en [tus habilidades]. Comprometido con mejorar [aspectos específicos de tu facultad].</p>
+                    <p class="candidate-bio">Estudiante de Ingeniería en Energía con amplia experiencia técnica y en gestión, comprometido con elevar la calidad educativa y mejorar la infraestructura de nuestra facultad, para brindar a los estudiantes las condiciones que merecen.</p>
                 </div>
             </div>
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="foto2.jpg" alt="Compañero 1, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                    <img src="Fotos/3.png" alt="Compañero 1, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Compañero 1</h3>
+                    <h3 class="candidate-name">Israel Tineo</h3>
                     <p class="candidate-role">Candidato a Consejo de Facultad</p>
-                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                    <p class="candidate-bio">Como estudiante de Ingeniería en Energía, trabajaré para que el Consejo priorice una infraestructura digna, mayor flexibilidad académica y una gestión transparente. ¡Tu voz será la fuerza del cambio!</p>
                 </div>
             </div>
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="foto3.jpg" alt="Compañero 2, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                    <img src="Fotos/4.png" alt="Compañero 2, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Compañero 2</h3>
+                    <h3 class="candidate-name">Jefferson Gennel</h3>
                     <p class="candidate-role">Candidato a Consejo de Facultad</p>
-                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                    <p class="candidate-bio">Estudiante de Ingeniería Mecánica comprometido con impulsar el crecimiento de nuestra facultad, fortaleciendo los institutos existentes y promoviendo la reapertura de espacios que impulsen el desarrollo académico y estudiantil.</p>
                 </div>
             </div>
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="foto4.jpg" alt="Compañero 3, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
+                    <img src="Fotos/5.png" alt="Compañero 3, Candidato a Consejo de Facultad" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Compañero 3</h3>
-                    <p class="candidate-role">Candidato a Consejo de Facultad</p>
-                    <p class="candidate-bio">[Breve descripción de su experiencia, logros y motivación para postular].</p>
+                    <h3 class="candidate-name">Valentino Flores</h3>
+                    <p class="candidate-role">Personero</p>
+                    <p class="candidate-bio">Estudiante de Ingeniería Mecánica, con el firme propósito de aportar al crecimiento de FIME y construir juntos una universidad más fuerte, unida y llena de oportunidades para todos.</p>
                 </div>
             </div>
         </div>
@@ -547,28 +617,28 @@
     <div id="asamblea" class="section">
         <div class="section-header animate-on-scroll">
             <h2>Asamblea Universitaria</h2>
-            <p>Nuestros 15 representantes para la Asamblea Universitaria y sus compromisos</p>
+            <p>Conoce a nuestras 2 representantes para la Asamblea Universitaria y sus compromisos</p>
         </div>
         
         <div class="candidates">
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="Fotos/foto-asamblea1.jpg" alt="Candidato 1, Asamblea Universitaria" class="candidate-img" loading="lazy">
+                    <img src="Fotos/2.png" alt="Candidato 1, Asamblea Universitaria" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Candidato 1</h3>
+                    <h3 class="candidate-name">Sofia Terrazo</h3>
                     <p class="candidate-role">Asamblea Universitaria</p>
-                    <p class="candidate-bio">[Descripción del candidato, su formación y objetivos].</p>
+                    <p class="candidate-bio">Estudiante de Ingeniería en Energía decidida a ser el puente entre la comunidad estudiantil y la Asamblea Universitaria, impulsando una voz fuerte, unida y participativa para construir juntos una mejor universidad.</p>
                 </div>
             </div>
             <div class="candidate animate-on-scroll">
                 <div class="candidate-img-container">
-                    <img src="foto-asamblea2.jpg" alt="Candidato 2, Asamblea Universitaria" class="candidate-img" loading="lazy">
+                    <img src="Fotos/6.png" alt="Candidato 2, Asamblea Universitaria" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Candidato 2</h3>
+                    <h3 class="candidate-name">Kiara Irazabal</h3>
                     <p class="candidate-role">Asamblea Universitaria</p>
-                    <p class="candidate-bio">[Descripción del candidato, su formación y objetivos].</p>
+                    <p class="candidate-bio">Estudiante de Ingeniería en Energía, comprometida con impulsar propuestas que fortalezcan la vida universitaria y el desarrollo académico y humano de nuestra comunidad.</p>
                 </div>
             </div>
         </div>    
@@ -595,7 +665,7 @@
     <div id="universitario" class="section">
         <div class="section-header animate-on-scroll">
             <h2>Consejo Universitario</h2>
-            <p>Nuestros 2 representantes para el máximo órgano de gobierno universitario</p>
+            <p>Conoce a nuestro representante para el máximo órgano de gobierno universitario</p>
         </div>
         
         <div class="candidates">
@@ -604,9 +674,9 @@
                     <img src="Fotos/7.png" alt="Candidato 1, Consejo Universitario" class="candidate-img" loading="lazy">
                 </div>
                 <div class="candidate-info">
-                    <h3 class="candidate-name">Candidato 1</h3>
+                    <h3 class="candidate-name">Gian Uska</h3>
                     <p class="candidate-role">Consejo Universitario</p>
-                    <p class="candidate-bio">[Descripción del candidato, su experiencia y visión para la universidad].</p>
+                    <p class="candidate-bio">Soy Gian Piero Uska More, estudiante de la carrera profesional de Ingeniería en Energía, actualmente cursando el cuarto ciclo. Me postulo al Consejo Universitario con el firme propósito de representar a mis compañeros de manera responsable, comprometida y transparente. Mis objetivos en el CU es ser una voz activa y un voto firme, trabajando para defender los intereses del estudiante y el bienestar académico para la facultad.</p>
                 </div>
             </div>
         </div>
@@ -633,12 +703,8 @@
     <footer class="animate-on-scroll">
         <h3>¡Únete al Cambio!</h3>
         <div class="social-icons">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
-        <p>Contacto: <a href="mailto:contacto@campaniauniversitaria.edu">contacto@campaniauniversitaria.edu</a> | Teléfono: +51 123 456 789</p>
+        <p>Por una FIME mas unida.</p>
         <p>© 2025 Campaña Universitaria - Todos los derechos reservados</p>
     </footer>
 
@@ -646,15 +712,18 @@
         // Mostrar sección según hash
         function showSection() {
             const sections = document.querySelectorAll('.section');
+            const hero = document.querySelector('#home');
             sections.forEach(section => section.classList.remove('active'));
             
             const hash = window.location.hash;
             if (hash && document.querySelector(hash)) {
                 document.querySelector(hash).classList.add('active');
+                hero.style.display = 'none';
                 setTimeout(() => {
                     document.querySelector(hash).scrollIntoView({ behavior: 'smooth' });
                 }, 100);
             } else {
+                hero.style.display = 'flex';
                 document.querySelector('#home').scrollIntoView({ behavior: 'smooth' });
             }
         }
@@ -680,8 +749,9 @@
                     
                     if (targetId === '#home') {
                         document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                        document.querySelector('#home').style.display = 'flex';
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                        history.pushState(null, null, ' ');
+                        history.pushState(null, null, '');
                         e.preventDefault();
                         return;
                     }
@@ -695,6 +765,7 @@
                     if (target) {
                         e.preventDefault();
                         document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                        document.querySelector('#home').style.display = 'none';
                         target.classList.add('active');
                         history.pushState(null, null, targetId);
                         window.scrollTo({
